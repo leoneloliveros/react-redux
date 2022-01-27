@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 
 import TodoItem from './TodoItem';
 
-// import { getTodos } from '../lib/todoServices'
-
-import { addTodo, toggleLoader } from '../store/actions'
+import { fetchTodos, deleteTodo } from '../store/actions'
 
 const List = [
   { id: 1, isCompleted: false, name: 'Levantarse' },
@@ -28,12 +26,19 @@ const TodoList = ({ filter }) => {
 
   const onDeleteTodo = (id) => {
     console.log('onDeleteTodo', id);
+    dispatch(deleteTodo(id))
+    // aqui la consulta a nuestro action del redux y a la base de datos
   };
 
   useEffect(() => {
-    dispatch(toggleLoader(true))
-    dispatch(addTodo(List))
-    dispatch(toggleLoader(false))
+    // fetch(`https://fakestoreapi.com/carts?sort=${filter}`)
+    //         .then(res=>res.json())
+    //         .then(json=>console.log(json))
+    // dispatch(toggleLoader(true))
+    // dispatch(addTodo(List))
+    // dispatch(toggleLoader(false))
+
+    dispatch(fetchTodos())
   }, [])
 
   useEffect(() => {
